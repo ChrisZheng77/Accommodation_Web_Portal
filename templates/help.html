@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+    {{super()}}
+    <link href="{{url_for('static', filename='css/search.css') }}" rel="stylesheet"/>
+{% endblock stylesheets %}
+
+{% block body %}
+<div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    {% include 'components/searchbar.html' %}
+
+    {% include 'components/nav.html' %}
+</div>
+<div class="container pt-2">
+    <div class="border-bottom my-4 py-3">
+        <h2>Help</h2>
+    </div>
+    <div class="my-2">
+        <h4>How do I use search filters?</h4>
+        <p>If you want to narrow down your choices when looking for a place to stay, you can use search filters.</p>
+        <p>Descriptions for filters</p>
+        <p>For the most accurate results, always start your search by choosing your destination, number of guests and dates.</p>
+        <p>Other filters are available as well, some of which can be found by selecting <b>More Filters</b> below the filters that are showing.</p>
+        <ul>
+            <li><b>Accommodation type:</b> Choose the type of space you'd like to book, for example an apartment, loft, house or townhouse.</li>
+            <li><b>Parking:</b> whether this accommodation support a free parking space</li>
+            <li><b>Bathroom:</b> how many bathrooms in the accommodation</li>
+            <li><b>Guests:</b> how many guests are accepted for the accommodation</li>
+            <li><b>Bedroom:</b> how many bedrooms in the accommodation</li>
+        </ul>
+        <p>At this time, there is no way to search using keywords.</p>
+        <h4>For more details?</h4>
+        <p>If you have any question, please feel free to contact with our staff. wsdbwz@163.com</p>
+    </div>
+</div>
+{% endblock body %}

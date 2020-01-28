@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+    {{super()}}
+    <link href="{{url_for('static', filename='css/search.css') }}" rel="stylesheet"/>
+{% endblock stylesheets %}
+
+{% block body %}
+<div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    {% include 'components/searchbar.html' %}
+
+    {% include 'components/nav.html' %}
+</div>
+<div class="container pt-2">
+    <div class="border-bottom my-4 py-3">
+        <h2>Booking</h2>
+    </div>
+    <h5 class="my-3">You need pay for : $ {{ fee }}</h5>
+    <form method="post" action="{{ url_for('pay', id= id) }}">
+        <button class="btn btn-block btn-primary" type="submit">Pay</button>
+    </form>
+</div>
+{% endblock body %}

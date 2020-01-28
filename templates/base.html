@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+      {% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% endblock meta %}
+        <title>Accommodation just for you!</title>
+
+      {% block stylesheets %}
+        <!-- Bootstrap -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Font Awesome -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet"/>
+        <!-- Bootstrap-daterangepicker -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" rel="stylesheet"/>
+          <!-- Main css -->
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"/>
+      {% endblock stylesheets %}
+    {% endblock head %}
+  </head>
+  <body>
+    {% block body %}
+      <div class="container body">
+        <div class="main_container">
+          {% block main %}
+
+          {% endblock main %}
+        </div>
+      </div>
+    {% endblock body %}
+
+    {% block message %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div id="alert-box">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} fade show" role="alert">
+                    {{ message }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        {% endwith %}
+    {% endblock message %}
+  </body>
+   {% block javascripts %}
+        <!-- jQuery -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
+        <!-- autoComplete -->
+        <script src="{{ url_for('static', filename='js/bootstrap-autocomplete.min.js') }}"></script>
+        <!-- main js -->
+        <script src="{{url_for('static', filename='js/index.js')}}"></script>
+    {% endblock javascripts %}
+</html>

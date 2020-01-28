@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+    {{super()}}
+    <link href="{{url_for('static', filename='css/search.css') }}" rel="stylesheet"/>
+{% endblock stylesheets %}
+
+{% block body %}
+<div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    {% include 'components/searchbar.html' %}
+
+    {% include 'components/nav.html' %}
+</div>
+<div class="container pt-2">
+    <div class="border-bottom my-4 py-3">
+        <h2>Message</h2>
+    </div>
+
+    {% if message %}
+        <div class="mb-3">
+            <div class="pull-right w-75 p-3 my-2 rounded border border-secondary">
+                <span>{{ message.from_user.username }}</span> : {{ message.content }}
+
+            </div>
+            {% for m in message.children %}
+                <div class=" {%  if m.from_id == current_user.id %}pull-right border-secondary{% else %}pull-left border-info{% endif %} w-75 p-3 my-2 rounded border">
+                    <span>{{ m.from_user.username }}</span> : {{ m.content }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="clearfix"></div>
+    <div class="form-group mt-4">
+        <form action="{{url_for('add_message')}}" method="post">
+            <input type="hidden" value="{{ to_id }}" name="to_id">
+            <input type="hidden" value="{{ message.id }}" name="parent_id">
+            <textarea class="form-control my-3" rows=5 placeholder="Input your message" name="content" id="content" required></textarea>
+            <button class="btn btn-block btn-primary m-3">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

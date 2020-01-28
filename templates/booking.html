@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block stylesheets %}
+    {{super()}}
+    <link href="{{url_for('static', filename='css/search.css') }}" rel="stylesheet"/>
+{% endblock stylesheets %}
+
+{% block body %}
+<div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    {% include 'components/searchbar.html' %}
+
+    {% include 'components/nav.html' %}
+</div>
+<div class="container pt-2">
+    <div class="border-bottom my-4 py-3">
+        <h2>Booking</h2>
+    </div>
+    <form method="post" action="{{url_for('booking', id=data.id)}}">
+        <input class="text" hidden value="{{ data.id }}" name="a_id">
+        <div class="form-group">
+            <label for="a_name">Apartment Name</label>
+            <input type="text" class="form-control" name="a_name" id="a_name" disabled value="{{ data.a_name }}">
+        </div>
+        <div class="form-group">
+            <label for="daterange">Daterange</label>
+            <input type="text" class="daterange form-control w-100" id="daterange" name="daterange"/>
+        </div>
+        <button class="btn btn-block btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock body %}
